@@ -8,14 +8,7 @@ load_dotenv()
 genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
 model = genai.GenerativeModel("gemini-2.5-flash")
 
-INTENT_PROMPT = """You are an intent classifier. Given a user message, respond with ONLY one of these labels:
-- search: the user wants to find information from the web or asks about recent/current events
-- email: the user wants to write or draft an email
-- chat: a general question, conversation, or anything else
-
-User message: {message}
-
-Respond with only the label, nothing else."""
+INTENT_PROMPT = "Classify as search, email, or chat. Reply with one word only.\n\n{message}"
 
 
 def classify_intent(message: str) -> str:
